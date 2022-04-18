@@ -1,10 +1,12 @@
-import { isElementType } from '@testing-library/user-event/dist/utils';
+
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const emailRef = useRef('');
     const passwordRef = useRef('');
+    const navigate = useNavigate();
 
     const handleSubmit = event =>{
         event.preventDefault();
@@ -13,6 +15,10 @@ const Login = () => {
 
         console.log(email, password)
     }
+    const navigateResister = event => {
+        navigate('/resister');
+    }
+
     return (
         <div className='container w-50 mx-auto'>
             <h2 className='text-primary text-center'>Please Login</h2>
@@ -30,10 +36,11 @@ const Login = () => {
                     <Form.Check type="checkbox" label="Check me out" />
                 </Form.Group>
                 <Button variant="primary" type="submit">
-                    Submit
+                    Login
                 </Button>
 
             </Form>
+            <p>New to this website ? <span className='text-danger' onClick={navigateResister}>Please Resister</span></p>
         </div>
     );
 };
