@@ -4,7 +4,7 @@ const TrainerInfo = () => {
     return (
         <div className='container d-flex align-items-center mt-5'>
             <div>
-            <h1>Robinho The Fitness Trainer Academy</h1>
+            <h1>About Robinho The Fitness Trainer</h1>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta sunt voluptates explicabo, fuga officia aliquam non ducimus quia sed numquam doloribus ex suscipit, aperiam voluptatum iste facilis corrupti dolor laboriosam! I Bacame a certified Gym Trainer.</p>
             </div>
             <div>
