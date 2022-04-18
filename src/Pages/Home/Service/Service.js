@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Service = ({ service }) => {
     const { name, price, description, img } = service;
@@ -16,7 +17,9 @@ const Service = ({ service }) => {
                     <Card.Text>
                         Detail: {description}
                     </Card.Text>
-                    <Button variant="primary">Book This Course</Button>
+                    <Link to="/checkout">
+                    <button className='btn btn-primary'>Book This Course</button>
+                    </Link>
                 </Card.Body>
             </Card>
         </div>

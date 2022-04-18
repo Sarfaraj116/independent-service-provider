@@ -1,42 +1,48 @@
 import React from 'react';
-import { Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import './Resister.css';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase.init';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Resister = () => {
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+      ] = useCreateUserWithEmailAndPassword(auth);
+    const navigate = useNavigate();
 
-    const handleRegister = event => {
+    const navigateLogin = () => {
+        navigate('/login')
+    }
+    const handleResister = event =>{
         event.preventDefault();
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
+        
+        createUserWithEmailAndPassword(email, password)
+    }
+    if(user){
+        navigate('/home');
     }
 
     return (
-        <div className='container w-50 mx-auto'>
-            <h2 className='text-center text-primary'>Please Register</h2>
-            <Form onSubmit={handleRegister}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label> Your Name</Form.Label>
-                    <Form.Control type="name" placeholder="" />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="" required />
-                </Form.Group>
+        <div className='resister-form'>
+            <h2>Please Resister</h2>
+            <form onSubmit={handleResister}>
+                <input type="text" name="name" id="" placeholder='Your Name' />
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="" required />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Register
-                </Button>
+                <input type="email" name="email" id="" placeholder='email' required />
 
-            </Form>
-            <p>Already Resistered ? <Link to='/login' className='text-danger text-decoration-none'>Please Login</Link></p>
+                <input type="password" name="password" id="" placeholder='password' required />
+                <input type="submit" value="Resister" />
+            </form>
+            <p>Already have an account ? <Link to="/login" className='text-danger text-decoration-none' onClick={navigateLogin}>Please Login</Link></p>
+
+            <SocialLogin></SocialLogin>
         </div>
     );
 };
