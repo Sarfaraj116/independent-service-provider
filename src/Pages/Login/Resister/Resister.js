@@ -11,7 +11,7 @@ const Resister = () => {
         user,
         loading,
         error,
-      ] = useCreateUserWithEmailAndPassword(auth);
+      ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
     const navigate = useNavigate();
 
     const navigateLogin = () => {
@@ -38,7 +38,7 @@ const Resister = () => {
                 <input type="email" name="email" id="" placeholder='email' required />
 
                 <input type="password" name="password" id="" placeholder='password' required />
-                <input type="submit" value="Resister" />
+                <input className='w-50 btn btn-primary' type="submit" value="Resister" />
             </form>
             <p>Already have an account ? <Link to="/login" className='text-danger text-decoration-none' onClick={navigateLogin}>Please Login</Link></p>
 
